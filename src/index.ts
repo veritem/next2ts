@@ -3,12 +3,6 @@ import program from 'commander';
 import chalk from 'chalk';
 import figlet from 'figlet';
 
-program
-  .version('0.0.1')
-  .description('Convert you next.js project to typescript in minutes!')
-  .option('-h,--help', 'Help message')
-  .parse(process.argv);
-
 console.clear();
 console.log(
   chalk.blueBright.bold(
@@ -25,3 +19,13 @@ program
   .option('-c, --cheese <type>', 'Add the specified type of cheese [marble]')
   .option('-C, --no-cheese', 'You do not want any cheese')
   .parse(process.argv);
+
+console.log('Program options', program.opts());
+
+// if (!process.argv.slice(2).length) {
+//   program.outputHelp();
+// }
+
+if (!process.argv.slice().length) {
+  program.outputHelp();
+}
