@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node src/index.ts && npm start",
+    "dev": "ts-node src/index.ts",
     "start": "node dist/index.js"
   },
   "bin": {
@@ -33,5 +33,10 @@
   "prettier": {
     "semi": true,
     "singleQuote": true
+  },
+  "dependencies": {
+    "@types/figlet": "^1.2.1",
+    "chalk": "^4.1.0",
+    "figlet": "^1.5.0"
   }
 }
