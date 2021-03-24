@@ -3,6 +3,7 @@
 import program from 'commander';
 import chalk from 'chalk';
 import figlet from 'figlet';
+import path from 'path';
 
 console.clear();
 console.log(
@@ -13,17 +14,31 @@ console.log(
 
 program
   .version('0.0.1')
-  .description("An example CLI for ordering pizza's")
-  .option('-p, --peppers', 'Add peppers')
-  .option('-P, --pineapple', 'Add pineapple')
-  .option('-b, --bbq', 'Add bbq sauce')
-  .option('-c, --cheese <type>', 'Add the specified type of cheese [marble]')
-  .option('-C, --no-cheese', 'You do not want any cheese')
+  .description('Migrating Next.js to TypeScript utility')
+  .option('-h, --help', 'Help command')
   .parse(process.argv);
 
-console.log('Program options', program.opts());
-
-
-if (!process.argv.slice().length) {
+// print help message
+if (program.opts().help) {
   program.outputHelp();
+  process.exit(0);
 }
+
+let resolvedProjectPath = process.cwd();
+let currentPath = path.basename(resolvedProjectPath);
+
+//TODO:
+// console.log({ currentPath });
+// check if the project is a valid next.js Project
+// check if there exists page directory
+// Check if the folder is granted access to be writable
+// Run npm installs
+
+async function init(): Promise<any> {
+  console.log(
+    `\nMigrating to your project ${chalk.blue(currentPath)} to typescript`
+  );
+}
+
+// initialize the application
+init().catch((e) => console.log(e));
