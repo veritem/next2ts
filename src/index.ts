@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 import program from 'commander';
 import chalk from 'chalk';
 import figlet from 'figlet';
@@ -22,9 +23,6 @@ program
 
 console.log('Program options', program.opts());
 
-// if (!process.argv.slice(2).length) {
-//   program.outputHelp();
-// }
 
 if (!process.argv.slice().length) {
   program.outputHelp();
