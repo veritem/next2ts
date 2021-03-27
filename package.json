@@ -2,6 +2,7 @@
   "name": "next-ts",
   "version": "0.0.1",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "ts-node index.ts",
     "start": "node dist/index.js",
