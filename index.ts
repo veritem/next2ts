@@ -4,9 +4,7 @@ import chalk from 'chalk';
 import path from 'path';
 import { Header } from './helpers/Header';
 import { FolderExists } from './helpers/folder-exists';
-import { HandleInstallPackages } from './helpers/install';
-import spinner from 'cli-spinners';
-import logUpdate from 'log-update';
+import { setupProject } from './next-ts';
 
 console.clear();
 
@@ -16,7 +14,6 @@ program
   .option('-h, --help', 'Help command')
   .parse(process.argv);
 
-// print help message
 if (program.opts().help) {
   Header();
   program.outputHelp();
@@ -41,18 +38,7 @@ async function init(): Promise<any> {
     process.exit(0);
   }
 
-  try {
-    console.log(spinner.dots);
-    let i = 0;
-    setTimeout(() => {
-      const { frames } = spinner.dots;
-      logUpdate(frames[(i = ++i % frames.length)] + ' Unicorns');
-    }, 3000);
-    await HandleInstallPackages();
-  } catch (error) {
-    console.log(chalk.red(`Failed to install packages`));
-    process.exit(0);
-  }
+  await setupProject();
 }
 
 init().catch((e) => console.log(e));
