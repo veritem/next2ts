@@ -1,10 +1,12 @@
-#! /usr/bin/env node
+#!/usr/bin/env node
 import program from 'commander';
 import chalk from 'chalk';
 import path from 'path';
 import { Header } from './helpers/Header';
 import { FolderExists } from './helpers/folder-exists';
 import { HandleInstallPackages } from './helpers/install';
+import spinner from 'cli-spinners';
+import logUpdate from 'log-update';
 
 console.clear();
 
@@ -24,24 +26,33 @@ if (program.opts().help) {
 let resolvedProjectPath = process.cwd();
 let currentPathName = path.basename(resolvedProjectPath);
 
-//TODO:
-
-// -[ ] check if the project is a valid next.js Project
-// -[ ] check if there exists page directory
-// -[ ] Check if the folder is granted access to be writable
-// Run npm installs
-
 async function init(): Promise<any> {
   console.log(
     `\nMigrating to your project ${chalk.blue(currentPathName)} to typescript`
   );
 
-  if (FolderExists('pages') || FolderExists('src/pages')) {
+  console.log('Folder exists ' + FolderExists('pages'));
+
+  if (!FolderExists('pages') || !FolderExists('src/pages')) {
     console.clear();
-    console.log(chalk.red(`\nThis is not a Next.js Project`));
+    console.log('\n');
+    console.log(chalk.yellowBright('Next2ts\n'));
+    console.log(chalk.red(`This is not a Next.js Project!`));
+    process.exit(0);
   }
 
-  await HandleInstallPackages();
+  try {
+    console.log(spinner.dots);
+    let i = 0;
+    setTimeout(() => {
+      const { frames } = spinner.dots;
+      logUpdate(frames[(i = ++i % frames.length)] + ' Unicorns');
+    }, 3000);
+    await HandleInstallPackages();
+  } catch (error) {
+    console.log(chalk.red(`Failed to install packages`));
+    process.exit(0);
+  }
 }
-// initialize the application
+
 init().catch((e) => console.log(e));
