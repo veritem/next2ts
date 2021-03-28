@@ -1,2 +1,3 @@
-//TODO:
-// code to to install all of the
+export function HandleInstallPackages(): Promise<string> {
+  return new Promise('hello world');
+}

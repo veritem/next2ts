@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "target": "ES2015",
-    "module": "ES2020",
+    "target": "es2015",
+    "moduleResolution": "node",
     "strict": true,
+    "resolveJsonModule": true,
     "esModuleInterop": true,
-    "outDir": "dist",
-    "moduleResolution": "node"
+    "skipLibCheck": false
   }
 }

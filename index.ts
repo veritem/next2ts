@@ -2,8 +2,9 @@
 import program from 'commander';
 import chalk from 'chalk';
 import path from 'path';
-import { Header } from 'helpers/Header';
-import { FolderExists } from 'helpers/folder-exists';
+import { Header } from './helpers/Header';
+import { FolderExists } from './helpers/folder-exists';
+import { HandleInstallPackages } from './helpers/install';
 
 console.clear();
 
@@ -35,10 +36,12 @@ async function init(): Promise<any> {
     `\nMigrating to your project ${chalk.blue(currentPathName)} to typescript`
   );
 
-  if (FolderExists('pages')) {
+  if (FolderExists('pages') || FolderExists('src/pages')) {
     console.clear();
     console.log(chalk.red(`\nThis is not a Next.js Project`));
   }
+
+  await HandleInstallPackages();
 }
 // initialize the application
 init().catch((e) => console.log(e));
