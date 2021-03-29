@@ -1,9 +1,15 @@
-import fs from 'fs';
-import path from 'path';
+import { access } from 'fs';
 
-export function FolderExists(folderName: string): boolean {
-  if (fs.existsSync(path.resolve(folderName))) {
-    return true;
-  }
-  return false;
+export function FolderExists(path: string): Promise<boolean> {
+  return new Promise((resolve, reject) => {
+    access(path, function (err) {
+      if (err) {
+        if (err.code === 'ENOENT') {
+          return resolve(false);
+        }
+        return reject(err);
+      }
+      return resolve(true);
+    });
+  });
 }

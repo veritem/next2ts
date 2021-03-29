@@ -28,16 +28,6 @@ async function init(): Promise<any> {
     `\nMigrating to your project ${chalk.blue(currentPathName)} to typescript`
   );
 
-  console.log('Folder exists ' + FolderExists('pages'));
-
-  if (!FolderExists('pages') || !FolderExists('src/pages')) {
-    console.clear();
-    console.log('\n');
-    console.log(chalk.yellowBright('Next2ts\n'));
-    console.log(chalk.red(`This is not a Next.js Project!`));
-    process.exit(0);
-  }
-
   await setupProject();
 }
 
