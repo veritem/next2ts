@@ -3,16 +3,11 @@
   "version": "0.0.5",
   "main": "index.js",
   "scripts": {
-    "dev": "ncc build ./index.ts -w -o dist/",
-    "start": "node dist/index.js",
-    "prepublishOnly": "ncc build ./index.ts -o ./dist/ --minify --no-cache --no-source-map-register"
+    "start": "node index.js"
   },
   "bin": {
-    "next2ts": "./dist/index.js"
+    "next2ts": "index.js"
   },
-  "files": [
-    "dist"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/makuzaverite/next-ts.git"
