@@ -30,7 +30,7 @@
     "singleQuote": true
   },
   "dependencies": {
-    "@types/figlet": "^1.2.1",
+    "@types/figlet": "^1.5.1",
     "@vercel/ncc": "^0.27.0",
     "chalk": "^4.1.0",
     "cli-spinners": "^2.6.0",
