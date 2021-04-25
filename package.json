@@ -25,5 +25,7 @@
     "semi": true,
     "singleQuote": true
   },
-  "dependencies": {}
+  "dependencies": {
+    "cross-spawn": "^7.0.3"
+  }
 }
