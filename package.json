@@ -1,6 +1,6 @@
 {
   "name": "@makuzaverite/next2ts",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -9,16 +9,15 @@
     "next2ts": "index.js"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/makuzaverite/next-ts.git"
+    "url": "git://github.com/makuzaverite/next2ts.git"
   },
   "keywords": [],
   "author": "Makuza Mugabo Verite <mugaboverite@gmail.com> (https://veritem.me/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/makuzaverite/next-ts/issues"
+    "url": "https://github.com/makuzaverite/next2ts/issues"
   },
-  "homepage": "https://github.com/makuzaverite/next-ts#readme",
+  "homepage": "https://github.com/makuzaverite/next2ts#readme",
   "description": "Convert a next.js project to typescript in seconds",
   "devDependencies": {
     "@types/node": "^14.14.35",
