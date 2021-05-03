@@ -14,7 +14,7 @@ npx next2ts
 
 You are done!
 
-Disclaimer: You must be on no `node v14+`
+Disclaimer: You must be on `node v14+`
 
 ### Licence
 
