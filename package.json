@@ -1,6 +1,6 @@
 {
   "name": "next2ts",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -10,11 +10,6 @@
     "next2ts": "./index.js",
     "next-ts": "./index.js"
   },
-  "files": [
-    "index.js",
-    "next2ts.js",
-    "template"
-  ],
   "repository": {
     "url": "git://github.com/makuzaverite/next2ts.git"
   },
