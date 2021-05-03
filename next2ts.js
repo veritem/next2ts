@@ -1,8 +1,6 @@
-// https://gist.github.com/scriptex/20536d8cda36221f91d69a6bd4a528b3
-
 //TODO: (done) check for the project page directory
 //TODO: (done) Rename all files in the tree
-//TODO: Run  install
+//TODO: (done) Run  install
 
 import spawn from 'cross-spawn';
 import fs, { renameSync } from 'fs';
@@ -15,7 +13,13 @@ const __dirname = path.dirname(__filename);
 const cwd = process.cwd();
 
 function hasYarn() {
-  return fs.existsSync(cwd, 'yarn.lock');
+  try {
+    fs.existsSync(cwd, '/yarn.lock');
+    return true;
+  } catch (err) {
+    console.log(err);
+  }
+  return false;
 }
 
 export async function init() {
@@ -48,15 +52,14 @@ export async function init() {
     process.exit(1);
   }
 
+  console.log('\nRenaming your files...');
   renameFiles(projectSource);
 
-  //TODO:
+  console.log('\nInstalling required packages...');
 
-  // const allDependancies = ['typescript', '@types/react', '@types/node'];
+  const allDependancies = ['typescript', '@types/react', '@types/node'];
 
-  // return install(root, hasYarn(), allDependancies).then(() => {
-  //   console.log('Installing...............');
-  // });
+  return install(root, hasYarn(), allDependancies).then(() => {});
 }
 
 function renameFiles(source) {
@@ -101,10 +104,8 @@ function install(root, useYarn, dependancies) {
     let args = [];
 
     if (useYarn) {
-      command = 'yarn';
-      args = ['add', '--dev'].push(dependancies);
-      args.push('--cwd');
-      args.push(root);
+      command = 'yarnpkg';
+      args = ['add', '-D', '--exact'].concat(dependancies);
     } else {
       command = 'npm';
       args = ['install', '--save', '--save-exact', '--loglevel'].concat(
