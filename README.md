@@ -9,7 +9,7 @@ Make sure you are inside a next.js Project
 Execute
 
 ```bash
-   npx next2ts
+npx @makuzaverite/next2ts
 ```
 
 You are done!
