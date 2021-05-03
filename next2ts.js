@@ -1,9 +1,7 @@
-//TODO: (done) check for the project page directory
-//TODO: (done) Rename all files in the tree
-//TODO: (done) Run  install
-
+import { execSync } from 'child_process';
 import spawn from 'cross-spawn';
 import fs, { renameSync } from 'fs';
+import { blue, green, red } from 'kolorist';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -14,18 +12,26 @@ const cwd = process.cwd();
 
 function hasYarn() {
   try {
-    fs.existsSync(cwd, '/yarn.lock');
+    const userAgent = process.env.npm_config_user_agent;
+    if (userAgent) {
+      return Boolean(userAgent && userAgent.startsWith('yarn'));
+    }
+    execSync('yarnpkg --version', { stdio: 'ignore' });
     return true;
-  } catch (err) {
-    console.log(err);
+  } catch (e) {
+    return false;
   }
-  return false;
 }
 
 export async function init() {
   const root = path.basename(cwd);
 
-  console.log(`\nMigrating ${root} to typescript...`);
+  if (!fs.existsSync(path.join(cwd + '/package.json'))) {
+    console.log(red(`\n${root} is not a next.js project`));
+    process.exit(1);
+  }
+
+  console.log(blue(`\nMigrating ${root} to typescript`));
 
   if (
     !(
@@ -33,7 +39,7 @@ export async function init() {
       fs.existsSync(path.join(cwd + '/src/pages'))
     )
   ) {
-    console.log(`\n${root} is not a next.js project`);
+    console.log(red(`\n${root} is not a next.js project`));
     process.exit(1);
   }
 
@@ -46,20 +52,22 @@ export async function init() {
       path.join(__dirname + '/template/tsconfig.json'),
       path.join(cwd + '/tsconfig.json')
     );
-    console.log('\nInitilized tsconfig.json');
+    console.log('\nInitilized ' + blue('tsconfig.json'));
   } catch (e) {
     console.log('\nFailed to initialze tsconfig.json');
     process.exit(1);
   }
 
-  console.log('\nRenaming your files...');
+  console.log('\n' + green('Renaming your files'));
+
   renameFiles(projectSource);
 
-  console.log('\nInstalling required packages...');
-
   const allDependancies = ['typescript', '@types/react', '@types/node'];
+  console.log(green('\nInstalling required packages '));
 
-  return install(root, hasYarn(), allDependancies).then(() => {});
+  return install(root, hasYarn(), allDependancies).then(() => {
+    console.log(blue('\nYou are ready to go 🚀'));
+  });
 }
 
 function renameFiles(source) {

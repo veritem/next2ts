@@ -1,14 +1,20 @@
 {
   "name": "next2ts",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node index.js"
   },
   "bin": {
-    "next2ts": "./index.js"
+    "next2ts": "./index.js",
+    "next-ts": "./index.js"
   },
+  "files": [
+    "index.js",
+    "next2ts.js",
+    "template"
+  ],
   "repository": {
     "url": "git://github.com/makuzaverite/next2ts.git"
   },
@@ -26,5 +32,8 @@
   },
   "dependencies": {
     "cross-spawn": "^7.0.3"
+  },
+  "devDependencies": {
+    "kolorist": "^1.4.1"
   }
 }
