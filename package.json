@@ -1,13 +1,13 @@
 {
-  "name": "@makuzaverite/next2ts",
-  "version": "1.0.2",
+  "name": "next2ts",
+  "version": "1.0.3",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node index.js"
   },
   "bin": {
-    "next2ts": "index.js"
+    "next2ts": "./index.js"
   },
   "repository": {
     "url": "git://github.com/makuzaverite/next2ts.git"
@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/makuzaverite/next2ts#readme",
   "description": "Convert a next.js project to typescript in seconds",
-  "devDependencies": {},
   "prettier": {
     "semi": true,
     "singleQuote": true
