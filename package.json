@@ -29,6 +29,6 @@
     "cross-spawn": "^7.0.3"
   },
   "devDependencies": {
-    "kolorist": "^1.4.1"
+    "kolorist": "1.4.1"
   }
 }
