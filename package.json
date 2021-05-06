@@ -1,14 +1,14 @@
 {
   "name": "next2ts",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node index.js"
   },
   "bin": {
-    "next2ts": "./index.js",
-    "next-ts": "./index.js"
+    "next2ts": "index.js",
+    "next-ts": "index.js"
   },
   "repository": {
     "url": "git://github.com/makuzaverite/next2ts.git"

@@ -1,5 +1,4 @@
 import { execSync } from 'child_process';
-import spawn from 'cross-spawn';
 import fs, { renameSync } from 'fs';
 import { blue, green, red } from 'kolorist';
 import path from 'path';
@@ -47,6 +46,9 @@ export async function init() {
     ? path.join(cwd + '/pages')
     : path.join(cwd + '/src/pages');
 
+  let componentSource = fs.existsSync(path.join(cwd + '/components'));
+  let libComponentSource = fs.existsSync(path.join(cwd + '/lib'));
+
   try {
     fs.copyFileSync(
       path.join(__dirname + '/template/tsconfig.json'),
@@ -60,7 +62,10 @@ export async function init() {
 
   console.log('\n' + green('Renaming your files'));
 
-  renameFiles(projectSource);
+  renameProjectFiles(projectSource);
+
+  if (componentSource) renameComponentFiles(path.join(cwd + '/components'));
+  if (libComponentSource) renameLibFiles(path.join(cwd + '/lib'));
 
   const allDependancies = ['typescript', '@types/react', '@types/node'];
   console.log(green('\nInstalling required packages '));
@@ -70,8 +75,10 @@ export async function init() {
   });
 }
 
-function renameFiles(source) {
+function renameProjectFiles(source) {
   let files = [];
+
+  const match = RegExp('^[^.]+.js|jsx$');
 
   const getFilesRecursively = (directory) => {
     const filesInDirectory = fs.readdirSync(directory);
@@ -87,8 +94,6 @@ function renameFiles(source) {
 
   getFilesRecursively(source);
 
-  const match = RegExp('^[^.]+.js|jsx$');
-
   return files
     .filter((file) => file.match(match))
     .forEach((file) => {
@@ -103,6 +108,66 @@ function renameFiles(source) {
         const transformed = newFilename[0] + '.tsx';
         renameSync(filePath, transformed);
       }
+    });
+}
+
+function renameComponentFiles(componentsSource) {
+  let files = [];
+
+  const match = RegExp('^[^.]+.js|jsx$');
+
+  const getFilesRecursively = (directory) => {
+    const filesInDirectory = fs.readdirSync(directory);
+    for (const file of filesInDirectory) {
+      const absolute = path.join(directory, file);
+      if (fs.statSync(absolute).isDirectory()) {
+        getFilesRecursively(absolute);
+      } else {
+        files.push(absolute);
+      }
+    }
+  };
+
+  getFilesRecursively(componentsSource);
+
+  return files
+    .filter((file) => file.match(match))
+    .forEach((file) => {
+      const filePath = (componentsSource, file);
+
+      const newFilename = file.split('.');
+      const transformed = newFilename[0] + '.tsx';
+      renameSync(filePath, transformed);
+    });
+}
+
+function renameLibFiles(libSource) {
+  let files = [];
+
+  const match = RegExp('^[^.]+.js$');
+
+  const getFilesRecursively = (directory) => {
+    const filesInDirectory = fs.readdirSync(directory);
+    for (const file of filesInDirectory) {
+      const absolute = path.join(directory, file);
+      if (fs.statSync(absolute).isDirectory()) {
+        getFilesRecursively(absolute);
+      } else {
+        files.push(absolute);
+      }
+    }
+  };
+
+  getFilesRecursively(libSource);
+
+  return files
+    .filter((file) => file.match(match))
+    .forEach((file) => {
+      const filePath = (libSource, file);
+
+      const newFilename = file.split('.');
+      const transformed = newFilename[0] + '.ts';
+      renameSync(filePath, transformed);
     });
 }
 
