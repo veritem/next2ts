@@ -1,12 +1,7 @@
 const { execSync } = require('child_process');
-const fs,
-  { renameSync } = require('fs');
+const fs = require('fs');
+const path = require('path');
 const { blue, green, red } = require('kolorist');
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const cwd = process.cwd();
 
@@ -23,7 +18,7 @@ function hasYarn() {
   }
 }
 
-export async function init() {
+exports.init = async () => {
   const root = path.basename(cwd);
 
   if (!fs.existsSync(path.join(cwd + '/package.json'))) {
@@ -74,7 +69,7 @@ export async function init() {
   return install(root, hasYarn(), allDependancies).then(() => {
     console.log(blue('\nYou are ready to go 🚀'));
   });
-}
+};
 
 function renameProjectFiles(source) {
   let files = [];
@@ -103,11 +98,11 @@ function renameProjectFiles(source) {
       if (file.indexOf('/pages/api/') > -1) {
         const newFilename = file.split('.');
         const transformed = newFilename[0] + '.ts';
-        renameSync(filePath, transformed);
+        fs.renameSync(filePath, transformed);
       } else {
         const newFilename = file.split('.');
         const transformed = newFilename[0] + '.tsx';
-        renameSync(filePath, transformed);
+        fs.renameSync(filePath, transformed);
       }
     });
 }
@@ -138,7 +133,7 @@ function renameComponentFiles(componentsSource) {
 
       const newFilename = file.split('.');
       const transformed = newFilename[0] + '.tsx';
-      renameSync(filePath, transformed);
+      fs.renameSync(filePath, transformed);
     });
 }
 
@@ -168,7 +163,7 @@ function renameLibFiles(libSource) {
 
       const newFilename = file.split('.');
       const transformed = newFilename[0] + '.ts';
-      renameSync(filePath, transformed);
+      fs.renameSync(filePath, transformed);
     });
 }
 

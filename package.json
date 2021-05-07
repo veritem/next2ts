@@ -1,8 +1,7 @@
 {
   "name": "next2ts",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "start": "node index.js"
   },
