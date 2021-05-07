@@ -1,6 +1,7 @@
-import { execSync } from 'child_process';
-import fs, { renameSync } from 'fs';
-import { blue, green, red } from 'kolorist';
+const { execSync } = require('child_process');
+const fs,
+  { renameSync } = require('fs');
+const { blue, green, red } = require('kolorist');
 import path from 'path';
 import { fileURLToPath } from 'url';
 
