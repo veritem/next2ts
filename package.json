@@ -1,14 +1,13 @@
 {
   "name": "next2ts",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node index.js"
   },
   "bin": {
-    "next2ts": "index.js",
-    "next-ts": "index.js"
+    "next2ts": "index.js"
   },
   "repository": {
     "url": "git://github.com/makuzaverite/next2ts.git"
@@ -24,6 +23,9 @@
   "prettier": {
     "semi": true,
     "singleQuote": true
+  },
+  "engines": {
+    "node": ">=12.0.0"
   },
   "dependencies": {
     "cross-spawn": "^7.0.3",
