@@ -176,12 +176,10 @@ function install(root, useYarn, dependancies) {
 
     if (useYarn) {
       command = 'yarnpkg';
-      args = ['add', '-D', '--exact'].concat(dependancies);
+      args = ['add', '--dev'].concat(dependancies);
     } else {
       command = 'npm';
-      args = ['install', '--save', '--save-exact', '--loglevel'].concat(
-        dependancies
-      );
+      args = ['install', '--save-dev'].concat(dependancies);
     }
 
     const child = spawn(command, args, { stdio: 'inherit' });
