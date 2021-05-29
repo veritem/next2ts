@@ -1,26 +1,27 @@
 ### Next2ts
 
-
-
 Migrate your Next.js Project from javaScript to typescript in seconds
 
 ### Get started
-
-
 
 Make sure you are inside a next.js Project
 
 
 Execute
 
+
 ```bash
 npx next2ts
 ```
+or
 
-You ready to go!
+```bash
+pnpx next2ts
+```
 
 
 ### What does it do
+
 
 
 - It moves file these directories to typescript respectively.
@@ -48,9 +49,6 @@ You ready to go!
 - sets up  standard `tsconfig.json` for next.js apps
 - Have any idea to add one file an Issue or PR
 
-
-
-Disclaimer: You must be on `node v14+`
 
 ### Licence
 
