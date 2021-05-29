@@ -4,6 +4,7 @@ Migrate your Next.js Project from javaScript to typescript in seconds
 
 ### Get started
 
+
 Make sure you are inside a next.js Project
 
 
