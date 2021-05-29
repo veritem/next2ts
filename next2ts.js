@@ -2,7 +2,7 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const { blue, green, red } = require('kolorist');
-
+const spawn = require('cross-spawn');
 const cwd = process.cwd();
 
 function hasYarn() {
@@ -64,7 +64,9 @@ exports.init = async () => {
   if (libComponentSource) renameLibFiles(path.join(cwd + '/lib'));
 
   const allDependancies = ['typescript', '@types/react', '@types/node'];
-  console.log(green('\nInstalling required packages '));
+  console.log(green('\nInstalling required packages\n'));
+  allDependancies.map((dep) => console.log(`- ${dep}`));
+  console.log('\n');
 
   return install(root, hasYarn(), allDependancies).then(() => {
     console.log(blue('\nYou are ready to go 🚀'));

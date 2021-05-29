@@ -1,8 +1,11 @@
 ### Next2ts
 
+
+
 Migrate your Next.js Project from javaScript to typescript in seconds
 
 ### Get started
+
 
 
 Make sure you are inside a next.js Project
@@ -19,6 +22,7 @@ You ready to go!
 
 ### What does it do
 
+
 - It moves file these directories to typescript respectively.
 
 ```
@@ -34,10 +38,10 @@ You ready to go!
   pages or src/pages
     |
     |__api
-        |
-        |__.js --> .ts
-
-    _____.jsx,.js -> .tsx
+    |   |
+    |   |__.js --> .ts
+    |
+    |_____.jsx,.js -> .tsx
 ```
 
 - Installs all necessary packages.
