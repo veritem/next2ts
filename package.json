@@ -41,6 +41,6 @@
     "migration"
   ],
   "devDependencies": {
-    "ava": "^3.15.0"
+    "ava": "3.15.0"
   }
 }
