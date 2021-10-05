@@ -1,4 +1,4 @@
-### Next2ts
+### Next To Typescript
 
 Migrate your Next.js Project from javaScript to typescript in seconds
 
@@ -12,12 +12,12 @@ Execute
 
 
 ```bash
-npx next2ts
+npx next-to-ts
 ```
 or
 
 ```bash
-pnpx next2ts
+pnpx next-to-ts
 ```
 
 
@@ -47,10 +47,10 @@ pnpx next2ts
 ```
 
 - Installs all necessary packages.
-- sets up  standard `tsconfig.json` for next.js apps
+- sets up standard `tsconfig.json` for next.js apps
 - Have any idea to add one file an Issue or PR
 
 
 ### Licence
 
-This project is under [MIT](https://github.com/makuzaverite/next2ts) Licence
+This project is under [MIT](https://github.com/ImBIOS/next-to-ts) Licence
