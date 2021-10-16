@@ -1,8 +1,9 @@
-const { execSync } = require('child_process');
-const fs = require('fs');
-const path = require('path');
-const { blue, green, red } = require('kolorist');
-const spawn = require('cross-spawn');
+import { execSync } from 'child_process';
+import fs from 'fs';
+import path from 'path';
+import { blue, green, red } 'kolorist';
+import spawn from 'cross-spawn';
+
 const cwd = process.cwd();
 
 function hasYarn() {
@@ -18,7 +19,7 @@ function hasYarn() {
   }
 }
 
-exports.init = async () => {
+export async function init() {
   const root = path.basename(cwd);
 
   if (!fs.existsSync(path.join(cwd + '/package.json'))) {
@@ -71,14 +72,14 @@ exports.init = async () => {
   return install(root, hasYarn(), allDependancies).then(() => {
     console.log(blue('\nYou are ready to go 🚀'));
   });
-};
+}
 
-function renameProjectFiles(source) {
+function renameProjectFiles(source: string) {
   let files = [];
 
   const match = RegExp('^[^.]+.js|jsx$');
 
-  const getFilesRecursively = (directory) => {
+  const getFilesRecursively = (directory: string) => {
     const filesInDirectory = fs.readdirSync(directory);
     for (const file of filesInDirectory) {
       const absolute = path.join(directory, file);
