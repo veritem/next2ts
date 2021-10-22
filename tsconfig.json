@@ -1,8 +1,13 @@
 {
-	"compilerOptions": {
-		"module": "ES2020",
-		"moduleResolution": "node",
-		"esModuleInterop": true
-	}
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "importHelpers": false,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "exclude": ["test"]
 }
-
