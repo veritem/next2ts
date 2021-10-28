@@ -1,16 +1,16 @@
 {
   "name": "next2ts",
   "version": "6.0.3",
-  "main": "dist/src/index.js",
+  "exports": "./dist/index.js",
   "type": "module",
   "files": [
     "dist"
   ],
   "scripts": {
-    "start": "node dist/src/index.js"
+    "start": "./dist/index.js"
   },
   "bin": {
-    "next2ts": "dist/src/index.js"
+    "next2ts": "./dist/index.js"
   },
   "repository": {
     "url": "git://github.com/makuzaverite/next2ts.git"
@@ -36,7 +36,7 @@
   "dependencies": {
     "execa": "^5.1.1",
     "kolorist": "^1.5.0",
-    "rec-get-files": "^0.0.4"
+    "rec-get-files": "^0.0.7"
   },
   "keywords": [
     "nextjs",
@@ -50,6 +50,7 @@
   ],
   "devDependencies": {
     "@types/node": "^16.11.3",
+    "ora": "^6.0.1",
     "ts-node": "^10.3.1",
     "typescript": "^4.4.4"
   }

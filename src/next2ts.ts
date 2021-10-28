@@ -3,10 +3,7 @@ import path from 'path';
 import { blue, green, red } from 'kolorist';
 import execa from 'execa';
 import get_files from 'rec-get-files';
-
-const exec = (cmd: string, args: string[]) => {
-  return execa(cmd, args);
-};
+import ora from 'ora';
 
 const does_paths_exists = (paths: string): boolean => {
   return fs.existsSync(path.join(cwd + paths));
@@ -24,7 +21,7 @@ export async function init() {
 
   console.log(blue(`\nMigrating ${root} to typescript`));
 
-  if (!does_paths_exists('/pages') || !does_paths_exists('/src/pages')) {
+  if (!does_paths_exists('/pages') && !does_paths_exists('/src/pages')) {
     console.log(red(`\n${root} is not a next.js project`));
     process.exit(1);
   }
@@ -36,7 +33,27 @@ export async function init() {
   let componentSource = does_paths_exists('/components');
   let libComponentSource = does_paths_exists('/lib');
 
-  fs.writeFile(
+  renameProjectFiles(projectSource);
+
+  if (componentSource) renameComponentFiles(path.join(cwd + '/components'));
+  if (libComponentSource) renameLibFiles(path.join(cwd + '/lib'));
+
+  const allDependancies = ['typescript', '@types/react', '@types/node'];
+  console.log(green('\nInstalling required packages\n'));
+  allDependancies.map((dep) => console.log(`- ${dep}`));
+  console.log('\n');
+
+  await install(allDependancies);
+
+  await ts_init();
+
+  console.log(green('Wrote to tsconfig.json'));
+
+  console.log(blue('\nYou are ready to go 🚀'));
+}
+
+async function ts_init() {
+  fs.writeFileSync(
     cwd + '/tsconfig.json',
     `{
   "compilerOptions": {
@@ -55,28 +72,8 @@ export async function init() {
     "jsx": "preserve"
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]}`,
-    (err) => {
-      if (err) console.log(red('failed to write to tsconfig.json'));
-      console.log(green('Wrote to tsconfig.json'));
-    }
+  "exclude": ["node_modules"]}`
   );
-
-  console.log('\n' + green('Renaming your files'));
-
-  renameProjectFiles(projectSource);
-
-  if (componentSource) renameComponentFiles(path.join(cwd + '/components'));
-  if (libComponentSource) renameLibFiles(path.join(cwd + '/lib'));
-
-  const allDependancies = ['typescript', '@types/react', '@types/node'];
-  console.log(green('\nInstalling required packages\n'));
-  allDependancies.map((dep) => console.log(`- ${dep}`));
-  console.log('\n');
-
-  return install(allDependancies).then(() => {
-    console.log(blue('\nYou are ready to go 🚀'));
-  });
 }
 
 function renameProjectFiles(source: string) {
@@ -119,10 +116,13 @@ function get_js_files(path: string): string[] {
 }
 
 async function install(dependancies: string[]) {
+  let spinner = ora('Installing...');
   try {
-    const output = exec('npm', dependancies);
-    console.log({ output });
+    spinner.start();
+    await execa.command(`npm i -D ${dependancies.join(' ')}`, { shell: true });
+    spinner.succeed();
   } catch (error) {
+    spinner.fail();
     console.log({ error });
   }
 }
