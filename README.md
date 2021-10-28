@@ -27,3 +27,5 @@ pnpm dlx next2ts
 ### Contributing
 
 If you have any idea consider open issue or firing a PR.
+
+Makuza Mugabo Verite &copy;2021 under MIT licence
