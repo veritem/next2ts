@@ -1,19 +1,25 @@
 {
   "name": "next2ts",
   "version": "6.0.3",
-  "main": "index.js",
+  "exports": "./dist/index.js",
   "type": "module",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "start": "ts-node index.ts",
-    "test": "ava"
+    "start": "./dist/index.js"
   },
   "bin": {
-    "next2ts": "index.js"
+    "next2ts": "./dist/index.js"
   },
   "repository": {
     "url": "git://github.com/makuzaverite/next2ts.git"
   },
-  "author": "Makuza Mugabo Verite <mugaboverite@gmail.com> (https://veritem.me/)",
+  "author": {
+    "name": "Makuza Mugabo Verite",
+    "email": "mugaboverite@gmail.com",
+    "url": "https://veritem.me"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/makuzaverite/next2ts/issues"
@@ -28,22 +34,24 @@
     "node": ">=12.0.0"
   },
   "dependencies": {
-    "@vitejs/create-app": "^2.3.2",
-    "cross-spawn": "^7.0.3",
-    "kolorist": "^1.4.1"
+    "execa": "^5.1.1",
+    "kolorist": "^1.5.0",
+    "rec-get-files": "^0.0.7"
   },
   "keywords": [
     "nextjs",
     "next",
     "typescript",
     "ts",
+    "utility",
     "convertor",
     "nextjs to typescript",
     "migration"
   ],
   "devDependencies": {
-    "ava": "^3.15.0",
-    "ts-node": "^10.1.0",
-    "typescript": "^4.3.5"
+    "@types/node": "^16.11.3",
+    "ora": "^6.0.1",
+    "ts-node": "^10.3.1",
+    "typescript": "^4.4.4"
   }
 }

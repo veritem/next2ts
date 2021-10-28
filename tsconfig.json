@@ -1,8 +1,15 @@
 {
-	"compilerOptions": {
-		"module": "ES2020",
-		"moduleResolution": "node",
-		"esModuleInterop": true
-	}
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "ES2020",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "importHelpers": false,
+    "strict": true,
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "exclude": ["test"]
 }
-
