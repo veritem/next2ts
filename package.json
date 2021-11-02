@@ -36,7 +36,8 @@
   "dependencies": {
     "execa": "^5.1.1",
     "kolorist": "^1.5.0",
-    "rec-get-files": "^0.0.7"
+    "rec-get-files": "^0.0.7",
+    "ora": "^6.0.1"
   },
   "keywords": [
     "nextjs",
@@ -50,7 +51,6 @@
   ],
   "devDependencies": {
     "@types/node": "^16.11.3",
-    "ora": "^6.0.1",
     "ts-node": "^10.3.1",
     "typescript": "^4.4.4"
   }
